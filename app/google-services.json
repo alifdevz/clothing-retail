@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "670430735773",
+    "project_id": "clothing-retail",
+    "storage_bucket": "clothing-retail.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670430735773:android:792a50d64fdddf48889374",
+        "android_client_info": {
+          "package_name": "com.alif.clothingretail"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "670430735773-kibbqg4fkbecalreb3s3gcds5m8kv66d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alif.clothingretail",
+            "certificate_hash": "407697df85e56f22871bd70aa886c548eabc9c1f"
+          }
+        },
+        {
+          "client_id": "670430735773-m6qr3qj17iq0hpnr0p7jkt12u1q7p0p0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvkkIkts1Bb0TULaRmGAyfjD4d186r9Eo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "670430735773-m6qr3qj17iq0hpnr0p7jkt12u1q7p0p0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
