@@ -44,7 +44,7 @@ public class SignIn extends AppCompatActivity {
                 table_user.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        // Check if whether user exists in database or not
+                        // Check whether any user exists in database or not
                         if (dataSnapshot.child(editPhone.getText().toString()).exists()) {
                             // Get user information
                             mDialog.dismiss();
