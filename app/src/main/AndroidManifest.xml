@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClothingRetail">
         <activity
-            android:name=".SignIn"
+            android:name=".SignInActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

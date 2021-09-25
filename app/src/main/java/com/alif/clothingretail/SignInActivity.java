@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-public class SignIn extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
     EditText editPhone, editPassword;
     Button btnSignIn;
 
@@ -38,7 +38,7 @@ public class SignIn extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProgressDialog mDialog = new ProgressDialog(SignIn.this);
+                ProgressDialog mDialog = new ProgressDialog(SignInActivity.this);
                 mDialog.setMessage("Please wait...");
                 mDialog.show();
                 table_user.addValueEventListener(new ValueEventListener() {
@@ -50,13 +50,13 @@ public class SignIn extends AppCompatActivity {
                             mDialog.dismiss();
                             User user = dataSnapshot.child(editPhone.getText().toString()).getValue(User.class);
                             if (user.getPassword().equals(editPassword.getText().toString())) {
-                                Toast.makeText(SignIn.this, "Sign in successfully!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignInActivity.this, "Sign in successfully!", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(SignIn.this, "Wrong password!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignInActivity.this, "Wrong password!", Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             mDialog.dismiss();
-                            Toast.makeText(SignIn.this, "User does not exist in database.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignInActivity.this, "User does not exist in database.", Toast.LENGTH_SHORT).show();
                         }
                     }
 
