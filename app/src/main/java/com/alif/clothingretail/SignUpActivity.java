@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -43,20 +44,24 @@ public class SignUpActivity extends AppCompatActivity {
                 mDialog.show();
 
                 table_user.addValueEventListener(new ValueEventListener() {
+                    boolean dataExists = false;
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        // Check if the user phone number has already been registered
+                        // Check whether the user phone number has already been registered or not
                         if (dataSnapshot.child(editPhoneNumber.getText().toString()).exists()) {
                             mDialog.dismiss();
-                            Toast.makeText(SignUpActivity.this, "Phone number is already registered!", Toast.LENGTH_SHORT).show();
+                            if (!dataExists) {
+                                Toast.makeText(SignUpActivity.this, "Phone number is already registered!", Toast.LENGTH_SHORT).show();
+                                dataExists = true;
+                            }
                         } else {
                             mDialog.dismiss();
                             User user = new User(editName.getText().toString(), editPassword.getText().toString());
                             table_user.child(editPhoneNumber.getText().toString()).setValue(user);
                             Toast.makeText(SignUpActivity.this, "Sign up successfully!", Toast.LENGTH_SHORT).show();
+                            dataExists = true;
                             finish();
                         }
-
                     }
 
                     @Override
