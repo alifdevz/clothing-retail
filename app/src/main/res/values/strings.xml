@@ -3,4 +3,6 @@
     <string name="txt_clothing_retail">Clothing Retail</string>
     <string name="txt_sign_up">Sign Up</string>
     <string name="txt_sign_in">Sign In</string>
+    <string name="hint_phone_number">Phone Number</string>
+    <string name="hint_password">Password</string>
 </resources>
