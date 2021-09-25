@@ -5,4 +5,5 @@
     <string name="txt_sign_in">Sign In</string>
     <string name="hint_phone_number">Phone Number</string>
     <string name="hint_password">Password</string>
+    <string name="hint_name">Name</string>
 </resources>
