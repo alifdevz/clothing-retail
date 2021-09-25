@@ -38,7 +38,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/btnSignUp"
-            android:layout_margin="8dp" />
+            android:layout_margin="8dp"
+            android:padding="16dp" />
 
         <Button
             android:id="@+id/btn_sign_in"
@@ -48,7 +49,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/btnSignActive"
-            android:layout_margin="8dp" />
+            android:layout_margin="8dp"
+            android:padding="16dp" />
     </LinearLayout>
 
 </RelativeLayout>
