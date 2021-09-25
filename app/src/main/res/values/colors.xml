@@ -11,4 +11,7 @@
     <color name="colorPrimary">#004d40</color>
     <color name="colorPrimaryDark">#00521a</color>
     <color name="colorAccent">#39796b</color>
+
+    <color name="btnSignUp">#39796b</color>
+    <color name="btnSignActive">#a9d440</color>
 </resources>
