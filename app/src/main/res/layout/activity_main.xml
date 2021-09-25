@@ -19,7 +19,7 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:textSize="45sp"
-            android:fontFamily="@font/NABILA"
+            android:fontFamily="@font/nabila"
             android:textColor="#000000"
             android:text="@string/txt_clothing_retail" />
     </LinearLayout>
