@@ -55,11 +55,13 @@ public class SignInActivity extends AppCompatActivity {
                                 Intent homeIntent = new Intent(SignInActivity.this, HomeActivity.class);
                                 startActivity(homeIntent);
                             } else {
-                                Toast.makeText(SignInActivity.this, "Wrong password!", Toast.LENGTH_SHORT).show();
+                                // Wrong password
+                                Toast.makeText(SignInActivity.this, "Wrong phone number or password!", Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             mDialog.dismiss();
-                            Toast.makeText(SignInActivity.this, "User does not exist in database.", Toast.LENGTH_SHORT).show();
+                            // Wrong phone number (User does not exist in database)
+                            Toast.makeText(SignInActivity.this, "Wrong phone number or password!", Toast.LENGTH_SHORT).show();
                         }
                     }
 
