@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClothingRetail">
         <activity
+            android:name=".HomeActivity"
+            android:exported="true"
+            android:label="@string/title_activity_home"
+            android:theme="@style/Theme.ClothingRetail.NoActionBar" />
+        <activity
             android:name=".SignUpActivity"
             android:exported="true" />
         <activity

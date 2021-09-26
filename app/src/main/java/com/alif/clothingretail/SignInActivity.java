@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -50,7 +51,9 @@ public class SignInActivity extends AppCompatActivity {
                             mDialog.dismiss();
                             User user = dataSnapshot.child(editPhone.getText().toString()).getValue(User.class);
                             if (user.getPassword().equals(editPassword.getText().toString())) {
-                                Toast.makeText(SignInActivity.this, "Sign in successfully!", Toast.LENGTH_SHORT).show();
+                                // Toast.makeText(SignInActivity.this, "Sign in successfully!", Toast.LENGTH_SHORT).show();
+                                Intent homeIntent = new Intent(SignInActivity.this, HomeActivity.class);
+                                startActivity(homeIntent);
                             } else {
                                 Toast.makeText(SignInActivity.this, "Wrong password!", Toast.LENGTH_SHORT).show();
                             }
