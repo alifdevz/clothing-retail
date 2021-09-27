@@ -22,6 +22,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityHomeBinding binding;
+    private DrawerLayout drawerLayout; // class level DrawerLayout
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         DrawerLayout drawer = binding.drawerLayout;
+        drawerLayout = drawer;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -77,7 +79,10 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        moveTaskToBack(true);
+        if (drawerLayout.isOpen()) {
+            drawerLayout.close();
+        } else {
+            moveTaskToBack(true);
+        }
     }
 }
