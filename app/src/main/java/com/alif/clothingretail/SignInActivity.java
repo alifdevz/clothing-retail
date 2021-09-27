@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 public class SignInActivity extends AppCompatActivity {
-    EditText editPhone, editPassword;
+    MaterialEditText editPhone, editPassword;
     Button btnSignIn;
 
     @Override
@@ -28,8 +28,8 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        editPhone = (MaterialEditText) findViewById(R.id.edt_phone_number);
-        editPassword = (MaterialEditText) findViewById(R.id.edt_password);
+        editPhone = findViewById(R.id.edt_phone_number);
+        editPassword = findViewById(R.id.edt_password);
         btnSignIn = findViewById(R.id.btn_sign_in_lv2);
 
         // Initialize Firebase
