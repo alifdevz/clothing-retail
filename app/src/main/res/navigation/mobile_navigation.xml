@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_items" />
 
     <fragment
+        android:id="@+id/nav_cart"
+        android:name="com.alif.clothingretail.ui.cart.CartFragment"
+        android:label="@string/menu_cart"
+        tools:layout="@layout/fragment_cart" />
+
+    <fragment
         android:id="@+id/nav_home"
         android:name="com.alif.clothingretail.ui.home.HomeFragment"
         android:label="@string/menu_home"
