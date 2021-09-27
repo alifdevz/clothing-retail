@@ -53,7 +53,6 @@ public class HomeActivity extends AppCompatActivity {
         navigationView.getMenu().findItem(R.id.nav_sign_out).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                // drawer.close();
                 Intent signInIntent = new Intent(HomeActivity.this, SignInActivity.class);
                 signInIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(signInIntent);
