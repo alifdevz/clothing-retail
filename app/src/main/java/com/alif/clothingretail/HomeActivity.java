@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 
+import com.alif.clothingretail.common.Common;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -29,6 +30,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private FirebaseDatabase database;
     private DatabaseReference category;
+
+    private TextView tvFullName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +74,11 @@ public class HomeActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        // Set name for user
+        View headerView = navigationView.getHeaderView(0);
+        tvFullName = headerView.findViewById(R.id.tv_full_name);
+        tvFullName.setText(Common.currentUser.getName());
     }
 
     @Override
