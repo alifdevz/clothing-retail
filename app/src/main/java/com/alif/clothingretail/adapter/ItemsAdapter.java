@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alif.clothingretail.R;
 import com.alif.clothingretail.RecyclerViewMockData;
+import com.squareup.picasso.Picasso;
 
 public class ItemsAdapter extends RecyclerView.Adapter {
     @NonNull
@@ -42,7 +43,8 @@ public class ItemsAdapter extends RecyclerView.Adapter {
         }
 
         public void bindView(int position) {
-            itemImage.setImageResource(RecyclerViewMockData.itemImage[position]);
+            // itemImage.setImageResource(RecyclerViewMockData.itemImage[position]);
+            Picasso.get().load(RecyclerViewMockData.itemImage[position]).into(itemImage);
             itemName.setText(RecyclerViewMockData.itemName[position]);
         }
 
