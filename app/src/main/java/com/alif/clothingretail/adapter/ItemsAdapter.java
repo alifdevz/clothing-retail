@@ -44,7 +44,10 @@ public class ItemsAdapter extends RecyclerView.Adapter {
 
         public void bindView(int position) {
             // itemImage.setImageResource(RecyclerViewMockData.itemImage[position]);
-            Picasso.get().load(RecyclerViewMockData.itemImage[position]).into(itemImage);
+            Picasso.get()
+                    .load(RecyclerViewMockData.itemImage[position])
+                    .placeholder(R.drawable.no_image)
+                    .into(itemImage);
             itemName.setText(RecyclerViewMockData.itemName[position]);
         }
 
