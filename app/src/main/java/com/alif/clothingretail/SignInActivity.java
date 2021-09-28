@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.alif.clothingretail.common.Common;
 import com.alif.clothingretail.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -53,6 +54,7 @@ public class SignInActivity extends AppCompatActivity {
                             if (user.getPassword().equals(editPassword.getText().toString())) {
                                 // Toast.makeText(SignInActivity.this, "Sign in successfully!", Toast.LENGTH_SHORT).show();
                                 Intent homeIntent = new Intent(SignInActivity.this, HomeActivity.class);
+                                Common.currentUser = user;
                                 startActivity(homeIntent);
                             } else {
                                 // Wrong password
