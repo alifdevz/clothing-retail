@@ -79,17 +79,16 @@ public class ItemsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_items, container, false);
-        RecyclerView rvClothingItems = view.findViewById(R.id.rv_clothing_items);
+        rvClothingItems = view.findViewById(R.id.rv_clothing_items);
         rvClothingItems.setHasFixedSize(true);
-        ItemsAdapter adapter = new ItemsAdapter();
-        rvClothingItems.setAdapter(adapter);
+        // ItemsAdapter adapter = new ItemsAdapter();
+        // rvClothingItems.setAdapter(adapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         rvClothingItems.setLayoutManager(layoutManager);
 
         // Initialize Firebase
         database = FirebaseDatabase.getInstance();
         category = database.getReference("category");
-
         Query query = category;
         options = new FirebaseRecyclerOptions.Builder<Category>()
                 .setQuery(query, Category.class)
@@ -105,17 +104,18 @@ public class ItemsFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull ItemsViewHolder viewHolder, int position, @NonNull Category model) {
                 viewHolder.itemName.setText(model.getName());
-                Picasso.get().load(model.getName())
+                Picasso.get().load(model.getImage())
                         .into(viewHolder.itemImage);
             }
 
             @NonNull
             @Override
             public ItemsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return null;
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_list_clothing_items, parent, false);
+                return new ItemsViewHolder(view);
             }
         };
+        adapter.startListening();
+        rvClothingItems.setAdapter(adapter);
     }
-
-
 }
