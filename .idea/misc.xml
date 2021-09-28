@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/layout/fragment_orders.xml" value="0.1" />
         <entry key="app/src/main/res/layout/items_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/nav_header_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/rv_list_clothing_items.xml" value="0.1" />
         <entry key="app/src/main/res/menu/activity_home_drawer.xml" value="0.1" />
         <entry key="app/src/main/res/menu/home.xml" value="0.1" />
       </map>
