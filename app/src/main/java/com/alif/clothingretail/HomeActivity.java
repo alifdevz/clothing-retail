@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -17,6 +18,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alif.clothingretail.databinding.ActivityHomeBinding;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -24,12 +27,19 @@ public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
     private DrawerLayout drawerLayout; // class level DrawerLayout
 
+    private FirebaseDatabase database;
+    private DatabaseReference category;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // Initialize Firebase
+        database = FirebaseDatabase.getInstance();
+        category = database.getReference("category");
 
         setSupportActionBar(binding.appBarHome.toolbar);
         binding.appBarHome.fab.setOnClickListener(new View.OnClickListener() {
