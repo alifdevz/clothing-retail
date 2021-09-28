@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alif.clothingretail.R;
+import com.alif.clothingretail.adapter.ItemsAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,8 +67,8 @@ public class ItemsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_items, container, false);
         RecyclerView rvClothingItems = view.findViewById(R.id.rv_clothing_items);
 
-        ListAdapter listAdapter = new ListAdapter();
-        rvClothingItems.setAdapter(listAdapter);
+        ItemsAdapter adapter = new ItemsAdapter();
+        rvClothingItems.setAdapter(adapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         rvClothingItems.setLayoutManager(layoutManager);
 
