@@ -9,7 +9,7 @@ public class RecyclerViewMockData {
     };
     public static String[] itemName = {
             "Pakaian anak lengkap",
-            "Baju merah putih",
+            "Baju merah jambu",
             "Baju lengan panjang",
             "Pakaian anak laki-laki warna putih"
     };
