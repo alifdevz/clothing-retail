@@ -22,22 +22,4 @@
         android:name="com.alif.clothingretail.ui.orders.OrdersFragment"
         android:label="@string/menu_orders"
         tools:layout="@layout/fragment_orders" />
-
-    <fragment
-        android:id="@+id/nav_home"
-        android:name="com.alif.clothingretail.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.alif.clothingretail.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.alif.clothingretail.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
 </navigation>
