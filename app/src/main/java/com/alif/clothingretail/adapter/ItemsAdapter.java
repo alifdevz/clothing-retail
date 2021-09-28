@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alif.clothingretail.R;
 import com.alif.clothingretail.RecyclerViewMockData;
+import com.alif.clothingretail.viewholder.ItemsViewHolder;
 import com.squareup.picasso.Picasso;
 
 public class ItemsAdapter extends RecyclerView.Adapter {
@@ -23,37 +24,11 @@ public class ItemsAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((ItemsViewHolder) holder).bindView(position);
+        // ((ItemsViewHolder) holder).bindView(position);
     }
 
     @Override
     public int getItemCount() {
         return RecyclerViewMockData.itemName.length;
-    }
-
-    private class ItemsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private ImageView itemImage;
-        private TextView itemName;
-
-        public ItemsViewHolder(View view) {
-            super(view);
-            itemImage = view.findViewById(R.id.clothing_item_image);
-            itemName = view.findViewById(R.id.clothing_item_name);
-            view.setOnClickListener(this);
-        }
-
-        public void bindView(int position) {
-            // itemImage.setImageResource(RecyclerViewMockData.itemImage[position]);
-            Picasso.get()
-                    .load(RecyclerViewMockData.itemImageFromUrl[position])
-                    .placeholder(R.drawable.no_image)
-                    .into(itemImage);
-            itemName.setText(RecyclerViewMockData.itemName[position]);
-        }
-
-        @Override
-        public void onClick(View v) {
-
-        }
     }
 }

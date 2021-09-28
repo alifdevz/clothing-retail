@@ -2,6 +2,7 @@ package com.alif.clothingretail.ui.items;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +13,14 @@ import android.view.ViewGroup;
 
 import com.alif.clothingretail.R;
 import com.alif.clothingretail.adapter.ItemsAdapter;
+import com.alif.clothingretail.model.Category;
+import com.alif.clothingretail.viewholder.ItemsViewHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +37,11 @@ public class ItemsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private FirebaseDatabase database;
+    private DatabaseReference category;
+    private FirebaseRecyclerOptions<Category> options;
+    private RecyclerView rvClothingItems;
 
     public ItemsFragment() {
         // Required empty public constructor
@@ -66,12 +80,42 @@ public class ItemsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_items, container, false);
         RecyclerView rvClothingItems = view.findViewById(R.id.rv_clothing_items);
-
+        rvClothingItems.setHasFixedSize(true);
         ItemsAdapter adapter = new ItemsAdapter();
         rvClothingItems.setAdapter(adapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         rvClothingItems.setLayoutManager(layoutManager);
 
+        // Initialize Firebase
+        database = FirebaseDatabase.getInstance();
+        category = database.getReference("category");
+
+        Query query = category;
+        options = new FirebaseRecyclerOptions.Builder<Category>()
+                .setQuery(query, Category.class)
+                .build();
+
+        loadItems();
+
         return view;
     }
+
+    private void loadItems() {
+        FirebaseRecyclerAdapter<Category, ItemsViewHolder> adapter = new FirebaseRecyclerAdapter<Category, ItemsViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull ItemsViewHolder viewHolder, int position, @NonNull Category model) {
+                viewHolder.itemName.setText(model.getName());
+                Picasso.get().load(model.getName())
+                        .into(viewHolder.itemImage);
+            }
+
+            @NonNull
+            @Override
+            public ItemsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                return null;
+            }
+        };
+    }
+
+
 }

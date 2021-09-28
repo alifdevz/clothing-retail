@@ -28,9 +28,6 @@ public class HomeActivity extends AppCompatActivity {
     private ActivityHomeBinding binding;
     private DrawerLayout drawerLayout; // class level DrawerLayout
 
-    private FirebaseDatabase database;
-    private DatabaseReference category;
-
     private TextView tvFullName;
 
     @Override
@@ -39,10 +36,6 @@ public class HomeActivity extends AppCompatActivity {
 
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        // Initialize Firebase
-        database = FirebaseDatabase.getInstance();
-        category = database.getReference("category");
 
         setSupportActionBar(binding.appBarHome.toolbar);
         binding.appBarHome.fab.setOnClickListener(new View.OnClickListener() {
