@@ -3,6 +3,8 @@ package com.alif.clothingretail.ui.items;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,6 +63,14 @@ public class ItemsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_items, container, false);
+        View view = inflater.inflate(R.layout.fragment_items, container, false);
+        RecyclerView rvClothingItems = view.findViewById(R.id.rv_clothing_items);
+
+        ListAdapter listAdapter = new ListAdapter();
+        rvClothingItems.setAdapter(listAdapter);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        rvClothingItems.setLayoutManager(layoutManager);
+
+        return view;
     }
 }
