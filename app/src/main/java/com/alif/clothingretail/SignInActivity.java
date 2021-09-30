@@ -43,7 +43,8 @@ public class SignInActivity extends AppCompatActivity {
                 ProgressDialog mDialog = new ProgressDialog(SignInActivity.this);
                 mDialog.setMessage("Please wait...");
                 mDialog.show();
-                table_user.addValueEventListener(new ValueEventListener() {
+                // User addListenerForSingleValueEvent (not addValueEventListener) to load user profile or sign in
+                table_user.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         // Check whether any user exists in database or not
