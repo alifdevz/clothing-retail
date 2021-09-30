@@ -3,13 +3,15 @@ package com.alif.clothingretail.model;
 public class Clothing {
     private String name;
     private String image;
+    private String price;
 
     public Clothing() {
     }
 
-    public Clothing(String name, String image) {
+    public Clothing(String name, String image, String price) {
         this.name = name;
         this.image = image;
+        this.price = price;
     }
 
     public String getName() {
@@ -26,5 +28,13 @@ public class Clothing {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }
