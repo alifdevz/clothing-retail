@@ -12,8 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alif.clothingretail.R;
-import com.alif.clothingretail.adapter.ItemsAdapter;
-import com.alif.clothingretail.model.Category;
+import com.alif.clothingretail.model.Clothing;
 import com.alif.clothingretail.viewholder.ItemsViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -40,7 +39,7 @@ public class ItemsFragment extends Fragment {
 
     private FirebaseDatabase database;
     private DatabaseReference category;
-    private FirebaseRecyclerOptions<Category> options;
+    private FirebaseRecyclerOptions<Clothing> options;
     private RecyclerView rvClothingItems;
 
     public ItemsFragment() {
@@ -90,8 +89,8 @@ public class ItemsFragment extends Fragment {
         database = FirebaseDatabase.getInstance();
         category = database.getReference("category");
         Query query = category;
-        options = new FirebaseRecyclerOptions.Builder<Category>()
-                .setQuery(query, Category.class)
+        options = new FirebaseRecyclerOptions.Builder<Clothing>()
+                .setQuery(query, Clothing.class)
                 .build();
 
         loadItems();
@@ -100,9 +99,9 @@ public class ItemsFragment extends Fragment {
     }
 
     private void loadItems() {
-        FirebaseRecyclerAdapter<Category, ItemsViewHolder> adapter = new FirebaseRecyclerAdapter<Category, ItemsViewHolder>(options) {
+        FirebaseRecyclerAdapter<Clothing, ItemsViewHolder> adapter = new FirebaseRecyclerAdapter<Clothing, ItemsViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull ItemsViewHolder viewHolder, int position, @NonNull Category model) {
+            protected void onBindViewHolder(@NonNull ItemsViewHolder viewHolder, int position, @NonNull Clothing model) {
                 viewHolder.itemName.setText(model.getName());
                 Picasso.get().load(model.getImage())
                         .into(viewHolder.itemImage);

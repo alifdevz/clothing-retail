@@ -1,13 +1,13 @@
 package com.alif.clothingretail.model;
 
-public class Category {
+public class Clothing {
     private String name;
     private String image;
 
-    public Category() {
+    public Clothing() {
     }
 
-    public Category(String name, String image) {
+    public Clothing(String name, String image) {
         this.name = name;
         this.image = image;
     }
