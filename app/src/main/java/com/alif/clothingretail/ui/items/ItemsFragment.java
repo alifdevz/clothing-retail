@@ -38,7 +38,7 @@ public class ItemsFragment extends Fragment {
     private String mParam2;
 
     private FirebaseDatabase database;
-    private DatabaseReference category;
+    private DatabaseReference clothing;
     private FirebaseRecyclerOptions<Clothing> options;
     private RecyclerView rvClothingItems;
 
@@ -87,8 +87,8 @@ public class ItemsFragment extends Fragment {
 
         // Initialize Firebase
         database = FirebaseDatabase.getInstance();
-        category = database.getReference("category");
-        Query query = category;
+        clothing = database.getReference("clothing");
+        Query query = clothing;
         options = new FirebaseRecyclerOptions.Builder<Clothing>()
                 .setQuery(query, Clothing.class)
                 .build();
