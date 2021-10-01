@@ -1,11 +1,13 @@
 package com.alif.clothingretail.viewholder;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alif.clothingretail.ClothingDetailsActivity;
 import com.alif.clothingretail.R;
 import com.alif.clothingretail.RecyclerViewMockData;
 import com.squareup.picasso.Picasso;
@@ -31,7 +33,8 @@ public class ItemsViewHolder extends RecyclerView.ViewHolder implements View.OnC
     }
 
     @Override
-    public void onClick(View v) {
-
+    public void onClick(View view) {
+        Intent clothingDetailsIntent = new Intent(view.getContext(), ClothingDetailsActivity.class);
+        view.getContext().startActivity(clothingDetailsIntent);
     }
 }
