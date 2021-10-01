@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClothingRetail">
         <activity
+            android:name=".ClothingDetailsActivity"
+            android:exported="true" />
+        <activity
             android:name=".HomeActivity"
             android:exported="true"
             android:label="@string/title_activity_home"
