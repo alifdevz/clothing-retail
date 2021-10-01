@@ -105,7 +105,7 @@
                         <TextView
                             android:id="@+id/clothing_price_detail"
                             android:text="@string/txt_clothing_price_detail"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/black"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:layout_width="0dp"
@@ -113,7 +113,37 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
 
-                    <!-- Here is the increment and decrement buttons -->
+                    <!-- Here are the increment and decrement buttons -->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <Button
+                            android:id="@+id/btn_increment"
+                            android:text="+"
+                            android:textSize="16sp"
+                            android:backgroundTint="#43E41E"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="12dp"/>
+
+                        <TextView
+                            android:id="@+id/number"
+                            android:text="@string/number_default"
+                            android:textSize="20sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:id="@+id/btn_decrement"
+                            android:text="-"
+                            android:textSize="16sp"
+                            android:backgroundTint="#EA2D2D"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"/>
+                    </LinearLayout>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
