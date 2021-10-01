@@ -169,7 +169,7 @@
                         android:textStyle="bold"
                         android:text="@string/txt_description"
                         android:textColor="@color/black"
-                        android:textSize="14sp"/>
+                        android:textSize="18sp"/>
 
                     <TextView
                         android:id="@+id/clothing_description_detail"
