@@ -26,4 +26,6 @@
     <string name="txt_name_of_item">Name of item</string>
     <string name="txt_clothing_name_detail">Clothing Name</string>
     <string name="txt_clothing_price_detail">100</string>
+    <string name="txt_description">Description</string>
+    <string name="txt_description_detail">Description detail</string>
 </resources>
