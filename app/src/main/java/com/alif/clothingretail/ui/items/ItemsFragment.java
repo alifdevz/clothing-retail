@@ -1,5 +1,6 @@
 package com.alif.clothingretail.ui.items;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,8 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.alif.clothingretail.ClothingDetailsActivity;
 import com.alif.clothingretail.R;
+import com.alif.clothingretail.interfaces.ItemClickListener;
 import com.alif.clothingretail.model.Clothing;
 import com.alif.clothingretail.viewholder.ItemsViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -40,6 +44,7 @@ public class ItemsFragment extends Fragment {
     private FirebaseDatabase database;
     private DatabaseReference clothing;
     private FirebaseRecyclerOptions<Clothing> options;
+    private FirebaseRecyclerAdapter<Clothing, ItemsViewHolder> adapter;
     private RecyclerView rvClothingItems;
 
     public ItemsFragment() {
@@ -99,12 +104,23 @@ public class ItemsFragment extends Fragment {
     }
 
     private void loadItems() {
-        FirebaseRecyclerAdapter<Clothing, ItemsViewHolder> adapter = new FirebaseRecyclerAdapter<Clothing, ItemsViewHolder>(options) {
+        adapter = new FirebaseRecyclerAdapter<Clothing, ItemsViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull ItemsViewHolder viewHolder, int position, @NonNull Clothing model) {
                 viewHolder.itemName.setText(model.getName());
                 Picasso.get().load(model.getImage())
                         .into(viewHolder.itemImage);
+                final Clothing local = model;
+                viewHolder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+                        Intent clothingDetailsIntent = new Intent(getActivity(), ClothingDetailsActivity.class);
+                        clothingDetailsIntent.putExtra("clothingId", adapter.getRef(position).getKey());
+                        startActivity(clothingDetailsIntent);
+                        // Toast.makeText(getActivity(), "clothingId: " + local.getName(), Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(getActivity(), "clothingId: " + adapter.getRef(position).getKey(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @NonNull
