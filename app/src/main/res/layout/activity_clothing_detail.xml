@@ -23,7 +23,7 @@
             app:expandedTitleTextAppearance="@android:color/transparent">
             
             <ImageView
-                android:id="@+id/image_clothing"
+                android:id="@+id/image_clothing_detail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@null"
