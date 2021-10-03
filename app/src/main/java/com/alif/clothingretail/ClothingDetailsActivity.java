@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class ClothingDetailsActivity extends AppCompatActivity {
     private TextView clothingName, clothingPrice, clothingDescription;
     private TextView number;
     private Button btnIncrement, btnDecrement;
+    private int numberInt;
 
     private FirebaseDatabase database;
     private DatabaseReference clothing;
@@ -52,6 +54,7 @@ public class ClothingDetailsActivity extends AppCompatActivity {
         number = findViewById(R.id.number);
         btnIncrement = findViewById(R.id.btn_increment);
         btnDecrement = findViewById(R.id.btn_decrement);
+        numberInt = Integer.parseInt(number.getText().toString());
 
         // Get clothing id from intent
         if (getIntent() != null) {
@@ -60,7 +63,18 @@ public class ClothingDetailsActivity extends AppCompatActivity {
         if (!clothingId.isEmpty()) {
             getClothingDetails(clothingId);
         }
+    }
 
+    public void decreaseNumber(View view) {
+        if (numberInt > 1) {
+            numberInt--;
+            number.setText(String.valueOf(numberInt));
+        }
+    }
+
+    public void increaseNumber(View view) {
+        numberInt++;
+        number.setText(String.valueOf(numberInt));
     }
 
     private void getClothingDetails(String clothingId) {
