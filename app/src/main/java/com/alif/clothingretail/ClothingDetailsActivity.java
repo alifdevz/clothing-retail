@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.alif.clothingretail.model.Clothing;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class ClothingDetailsActivity extends AppCompatActivity {
+    private FloatingActionButton btnCart;
     private ImageView clothingImage;
     private TextView clothingName, clothingPrice, clothingDescription;
     private TextView number;
@@ -48,6 +50,7 @@ public class ClothingDetailsActivity extends AppCompatActivity {
                 .build();
 
         // Initialize views
+        btnCart = findViewById(R.id.btn_cart);
         clothingImage = findViewById(R.id.image_clothing_detail);
         clothingName = findViewById(R.id.clothing_name_detail);
         clothingPrice = findViewById(R.id.clothing_price_detail);
@@ -81,6 +84,10 @@ public class ClothingDetailsActivity extends AppCompatActivity {
     public void increaseNumber(View view) {
         numberInt++;
         number.setText(String.valueOf(numberInt));
+    }
+
+    public void storeToCart(View view) {
+
     }
 
     private void getClothingDetails(String clothingId) {

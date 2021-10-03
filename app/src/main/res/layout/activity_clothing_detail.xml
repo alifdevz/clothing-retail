@@ -54,7 +54,8 @@
         app:pressedTranslationZ="12dp"
         app:layout_anchor="@id/app_bar_layout"
         app:layout_anchorGravity="bottom|right|end"
-        app:useCompatPadding="true" />
+        app:useCompatPadding="true"
+        android:onClick="storeToCart" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_scrollview"
