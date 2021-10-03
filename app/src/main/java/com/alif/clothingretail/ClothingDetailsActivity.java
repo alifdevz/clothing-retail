@@ -8,8 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.alif.clothingretail.database.Database;
 import com.alif.clothingretail.model.Clothing;
+import com.alif.clothingretail.model.Order;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,6 +38,7 @@ public class ClothingDetailsActivity extends AppCompatActivity {
     private CollapsingToolbarLayout collapsingToolbarLayout;
 
     private String clothingId = "";
+    private Clothing currentClothing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,21 +91,27 @@ public class ClothingDetailsActivity extends AppCompatActivity {
     }
 
     public void storeToCart(View view) {
-
+        new Database(this).addToCart(new Order(
+                clothingId,
+                currentClothing.getName(),
+                number.getText().toString(),
+                currentClothing.getPrice()
+        ));
+        Toast.makeText(ClothingDetailsActivity.this, "Added to cart", Toast.LENGTH_SHORT).show();
     }
 
     private void getClothingDetails(String clothingId) {
         clothing.child(clothingId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Clothing clothing = dataSnapshot.getValue(Clothing.class);
+                currentClothing = dataSnapshot.getValue(Clothing.class);
                 if (clothing != null) {
-                    collapsingToolbarLayout.setTitle(clothing.getName());
-                    Picasso.get().load(clothing.getImage())
+                    collapsingToolbarLayout.setTitle(currentClothing.getName());
+                    Picasso.get().load(currentClothing.getImage())
                             .into(clothingImage);
-                    clothingName.setText(clothing.getName());
-                    clothingPrice.setText(clothing.getPrice());
-                    clothingDescription.setText(clothing.getDescription());
+                    clothingName.setText(currentClothing.getName());
+                    clothingPrice.setText(currentClothing.getPrice());
+                    clothingDescription.setText(currentClothing.getDescription());
                 }
             }
 
