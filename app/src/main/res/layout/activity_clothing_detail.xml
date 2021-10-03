@@ -19,7 +19,7 @@
             android:layout_height="350dp"
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="#0e0d0e"
+            app:contentScrim="@color/colorPrimary"
             app:expandedTitleTextAppearance="@android:color/transparent">
             
             <ImageView

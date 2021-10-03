@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.alif.clothingretail.model.Clothing;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,6 +30,7 @@ public class ClothingDetailsActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference clothing;
     private FirebaseRecyclerOptions<Clothing> options;
+    private CollapsingToolbarLayout collapsingToolbarLayout;
 
     private String clothingId = "";
 
@@ -55,6 +57,10 @@ public class ClothingDetailsActivity extends AppCompatActivity {
         btnIncrement = findViewById(R.id.btn_increment);
         btnDecrement = findViewById(R.id.btn_decrement);
         numberInt = Integer.parseInt(number.getText().toString());
+
+        collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
+        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
 
         // Get clothing id from intent
         if (getIntent() != null) {
@@ -83,6 +89,7 @@ public class ClothingDetailsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Clothing clothing = dataSnapshot.getValue(Clothing.class);
                 if (clothing != null) {
+                    collapsingToolbarLayout.setTitle(clothing.getName());
                     Picasso.get().load(clothing.getImage())
                             .into(clothingImage);
                     clothingName.setText(clothing.getName());
