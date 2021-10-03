@@ -95,7 +95,9 @@
                         android:id="@+id/layout_price"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        tools:ignore="RtlSymmetry">
 
                         <TextView
                             android:text="Rp"
@@ -121,7 +123,9 @@
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:paddingStart="12dp"
+                        tools:ignore="RtlSymmetry">
 
                         <Button
                             android:id="@+id/btn_decrement"
