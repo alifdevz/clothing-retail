@@ -56,7 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
                             }
                         } else {
                             mDialog.dismiss();
-                            User user = new User(editName.getText().toString(), editPassword.getText().toString());
+                            User user = new User(editName.getText().toString(), editPassword.getText().toString(), editPhoneNumber.getText().toString());
                             table_user.child(editPhoneNumber.getText().toString()).setValue(user);
                             Toast.makeText(SignUpActivity.this, "Sign up successfully!", Toast.LENGTH_SHORT).show();
                             dataExists = true;
