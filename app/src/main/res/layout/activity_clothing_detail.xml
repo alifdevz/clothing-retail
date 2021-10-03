@@ -178,7 +178,10 @@
                         android:id="@+id/clothing_description_detail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="12dp"
+                        android:paddingTop="0dp"
+                        android:paddingStart="12dp"
+                        android:paddingBottom="12dp"
+                        android:paddingEnd="12dp"
                         android:text="@string/txt_description_detail"
                         android:textColor="@color/black"
                         android:textSize="14sp"/>
