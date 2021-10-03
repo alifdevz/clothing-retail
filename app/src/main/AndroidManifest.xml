@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClothingRetail">
         <activity
+            android:name=".CartActivity"
+            android:exported="true" />
+        <activity
             android:name=".ClothingDetailsActivity"
             android:exported="true" />
         <activity
