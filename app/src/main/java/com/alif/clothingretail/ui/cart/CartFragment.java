@@ -1,7 +1,9 @@
 package com.alif.clothingretail.ui.cart;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,10 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alif.clothingretail.R;
 import com.alif.clothingretail.adapter.CartAdapter;
+import com.alif.clothingretail.common.Common;
 import com.alif.clothingretail.database.Database;
 import com.alif.clothingretail.model.Order;
 import com.alif.clothingretail.model.Request;
@@ -102,13 +108,59 @@ public class CartFragment extends Fragment {
         btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                showAlertDialog();
             }
         });
 
         loadOrderList();
 
         return view;
+    }
+
+    private void showAlertDialog() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle("One more step!");
+        alertDialog.setMessage("Enter your address: ");
+
+        final EditText edtAddress = new EditText(getActivity());
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+        );
+        edtAddress.setLayoutParams(layoutParams);
+        alertDialog.setView(edtAddress); // Add edittext to alertdialog
+        alertDialog.setIcon(R.drawable.ic_baseline_shopping_cart_24);
+
+        alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Create new request
+                Request request = new Request(
+                        Common.currentUser.getPhoneNumber(),
+                        Common.currentUser.getName(),
+                        edtAddress.getText().toString(),
+                        tvTotalPrice.getText().toString(),
+                        cart
+                );
+
+                // Submit to Firebase
+                // Use System.CurrentTimeMillis as key
+                requests.child(String.valueOf(System.currentTimeMillis()))
+                        .setValue(request);
+                // Delete cart
+                new Database(getActivity()).cleanCart();
+                Toast.makeText(getActivity(), "Thank you for ordering!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
     }
 
     private void loadOrderList() {
