@@ -4,26 +4,33 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.alif.clothingretail.ClothingDetailsActivity;
+import com.alif.clothingretail.HomeActivity;
 import com.alif.clothingretail.R;
 import com.alif.clothingretail.interfaces.ItemClickListener;
 import com.alif.clothingretail.model.Clothing;
 import com.alif.clothingretail.viewholder.ItemsViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
+
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
