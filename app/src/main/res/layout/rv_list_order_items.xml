@@ -22,7 +22,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/order_id"
+                android:id="@+id/tv_order_id"
                 android:layout_marginStart="10dp"
                 android:gravity="center_vertical|start"
                 android:textAllCaps="true"
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/order_status"
+                android:id="@+id/tv_order_status"
                 android:layout_marginStart="10dp"
                 android:gravity="center_vertical|start"
                 android:textStyle="italic"
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/order_phone_number"
+                android:id="@+id/tv_order_phone_number"
                 android:layout_marginStart="10dp"
                 android:gravity="center_vertical|start"
                 android:textStyle="italic"
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/order_address"
+                android:id="@+id/tv_order_address"
                 android:layout_marginStart="10dp"
                 android:gravity="center_vertical|start"
                 android:textStyle="italic"
