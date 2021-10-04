@@ -3,12 +3,25 @@ package com.alif.clothingretail.ui.cart;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.alif.clothingretail.R;
+import com.alif.clothingretail.adapter.CartAdapter;
+import com.alif.clothingretail.database.Database;
+import com.alif.clothingretail.model.Order;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +38,18 @@ public class CartFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private RecyclerView rvCartItems;
+    private RecyclerView.LayoutManager layoutManager;
+
+    private FirebaseDatabase database;
+    private DatabaseReference requests;
+
+    private TextView tvTotalPrice;
+    private Button btnPlaceOrder;
+
+    private List<Order> cart = new ArrayList<>();
+    private CartAdapter adapter;
 
     public CartFragment() {
         // Required empty public constructor
@@ -60,7 +85,35 @@ public class CartFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false);
+        // Initialize Firebase
+        database = FirebaseDatabase.getInstance();
+        requests = database.getReference("requests");
+
+        // Initialize views
+        View view = inflater.inflate(R.layout.fragment_cart, container, false);
+        rvCartItems = view.findViewById(R.id.rv_cart_items);
+        rvCartItems.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(getActivity());
+        rvCartItems.setLayoutManager(layoutManager);
+
+        tvTotalPrice = view.findViewById(R.id.total_price);
+        btnPlaceOrder = view.findViewById(R.id.btn_place_order);
+
+        loadOrderList();
+
+        return view;
+    }
+
+    private void loadOrderList() {
+        cart = new Database(getActivity()).getCarts();
+        adapter = new CartAdapter(cart, getActivity());
+        rvCartItems.setAdapter(adapter);
+
+        // Calculate price total
+        int total = 0;
+        for (Order order: cart) {
+            total += (Integer.parseInt(order.getPrice())  * Integer.parseInt(order.getQuantity()));
+            tvTotalPrice.setText("Rp" + total);
+        }
     }
 }
