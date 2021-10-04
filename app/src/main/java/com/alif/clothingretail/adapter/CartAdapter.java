@@ -5,7 +5,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,7 +19,7 @@ import java.util.List;
 
 class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public TextView tvCartItemName, tvCartItemPrice;
-    public ImageView imgCartItemCount;
+    public TextView tvCartItemCount;
 
     private ItemClickListener itemClickListener;
 
@@ -32,7 +31,7 @@ class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
         super(itemView);
         tvCartItemName = itemView.findViewById(R.id.cart_item_name);
         tvCartItemPrice = itemView.findViewById(R.id.cart_item_price);
-        imgCartItemCount = itemView.findViewById(R.id.img_cart_item_count);
+        tvCartItemCount = itemView.findViewById(R.id.tv_cart_item_count);
     }
 
     @Override
@@ -60,7 +59,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-
+        holder.tvCartItemName.setText(orderList.get(position).getProductName());
+        int price = Integer.parseInt(orderList.get(position).getPrice()) * Integer.parseInt(orderList.get(position).getQuantity());
+        holder.tvCartItemPrice.setText(String.valueOf(price));
+        holder.tvCartItemCount.setText(orderList.get(position).getQuantity());
     }
 
     @Override
