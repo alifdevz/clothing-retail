@@ -98,6 +98,12 @@ public class CartFragment extends Fragment {
 
         tvTotalPrice = view.findViewById(R.id.total_price);
         btnPlaceOrder = view.findViewById(R.id.btn_place_order);
+        btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         loadOrderList();
 
