@@ -1,6 +1,8 @@
 package com.alif.clothingretail.ui.cart;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -17,12 +19,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alif.clothingretail.HomeActivity;
 import com.alif.clothingretail.R;
+import com.alif.clothingretail.SignInActivity;
 import com.alif.clothingretail.adapter.CartAdapter;
 import com.alif.clothingretail.common.Common;
 import com.alif.clothingretail.database.Database;
 import com.alif.clothingretail.model.Order;
 import com.alif.clothingretail.model.Request;
+import com.alif.clothingretail.ui.items.ItemsFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -134,6 +139,10 @@ public class CartFragment extends Fragment {
         alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                ProgressDialog mDialog = new ProgressDialog(getActivity());
+                mDialog.setMessage("Please wait...");
+                mDialog.show();
+
                 // Create new request
                 Request request = new Request(
                         Common.currentUser.getPhoneNumber(),
@@ -150,6 +159,11 @@ public class CartFragment extends Fragment {
                 // Delete cart
                 new Database(getActivity()).cleanCart();
                 Toast.makeText(getActivity(), "Thank you for ordering!", Toast.LENGTH_SHORT).show();
+
+                // Go back to ItemsFragment (HomeActivity's first fragment)
+                mDialog.dismiss();
+                Intent homeIntent = new Intent(getActivity(), HomeActivity.class);
+                startActivity(homeIntent);
             }
         });
 
