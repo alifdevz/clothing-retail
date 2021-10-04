@@ -35,7 +35,6 @@
                 android:id="@+id/cart_item_price"
                 android:layout_marginStart="10dp"
                 android:gravity="center_vertical|start"
-                android:textAllCaps="true"
                 android:textStyle="italic"
                 android:text="Rp100.000"
                 android:layout_width="wrap_content"
