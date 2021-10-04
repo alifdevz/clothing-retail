@@ -143,13 +143,15 @@ public class CartFragment extends Fragment {
                 mDialog.setMessage("Please wait...");
                 mDialog.show();
 
+                String status = "Waiting";
                 // Create new request
                 Request request = new Request(
                         Common.currentUser.getPhoneNumber(),
                         Common.currentUser.getName(),
                         edtAddress.getText().toString(),
                         tvTotalPrice.getText().toString(),
-                        cart
+                        cart,
+                        status
                 );
 
                 // Submit to Firebase
