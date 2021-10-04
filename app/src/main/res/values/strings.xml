@@ -35,4 +35,7 @@
     <string name="txt_phone_number">Phone Number:\u0020</string>
     <string name="txt_address">Address:\u0020</string>
     <string name="txt_status">Status:\u0020</string>
+    <string name="default_phone_number">081234567890</string>
+    <string name="default_password">abcd</string>
+    <string name="default_user_name">Budi</string>
 </resources>
