@@ -55,4 +55,10 @@ public class Database extends SQLiteAssetHelper {
         String query = String.format("DELETE FROM order_detail;");
         db.execSQL(query);
     }
+
+    public void deleteItem(String productId) {
+        SQLiteDatabase db = getReadableDatabase();
+        String query = String.format("DELETE FROM order_detail WHERE product_id = '%s';", productId);
+        db.execSQL(query);
+    }
 }

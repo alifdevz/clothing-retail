@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alif.clothingretail.R;
+import com.alif.clothingretail.database.Database;
 import com.alif.clothingretail.interfaces.ItemClickListener;
 import com.alif.clothingretail.model.Order;
 
@@ -19,9 +20,7 @@ import java.util.List;
 
 class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public TextView tvCartItemName, tvCartItemPrice;
-    public TextView tvCartItemCount;
-
-    private ItemClickListener itemClickListener;
+    public TextView tvCartItemCount, tvDeleteItem;
 
     public void setTvCartItemName(TextView tvCartItemName) {
         this.tvCartItemName = tvCartItemName;
@@ -32,10 +31,12 @@ class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
         tvCartItemName = itemView.findViewById(R.id.cart_item_name);
         tvCartItemPrice = itemView.findViewById(R.id.cart_item_price);
         tvCartItemCount = itemView.findViewById(R.id.tv_cart_item_count);
+        tvDeleteItem = itemView.findViewById(R.id.tv_delete_item);
+
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View view) {
 
     }
 }
@@ -58,11 +59,21 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        holder.tvCartItemName.setText(orderList.get(position).getProductName());
+    public void onBindViewHolder(@NonNull CartViewHolder viewHolder, int position) {
+        viewHolder.tvCartItemName.setText(orderList.get(position).getProductName());
         int price = Integer.parseInt(orderList.get(position).getPrice()) * Integer.parseInt(orderList.get(position).getQuantity());
-        holder.tvCartItemPrice.setText("Rp" + price);
-        holder.tvCartItemCount.setText(orderList.get(position).getQuantity());
+        viewHolder.tvCartItemPrice.setText("Rp" + price);
+        viewHolder.tvCartItemCount.setText(orderList.get(position).getQuantity());
+        viewHolder.tvDeleteItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Database(context).deleteItem(orderList.get(viewHolder.getAbsoluteAdapterPosition()).getProductId());
+                orderList.remove(viewHolder.getAbsoluteAdapterPosition());
+                notifyItemRemoved(viewHolder.getAbsoluteAdapterPosition());
+                notifyItemRangeChanged(viewHolder.getAbsoluteAdapterPosition(), orderList.size());
+                viewHolder.itemView.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override
