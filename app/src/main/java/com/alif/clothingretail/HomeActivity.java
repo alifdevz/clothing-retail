@@ -38,13 +38,6 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarHome.toolbar);
-        binding.appBarHome.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent cartIntent = new Intent(HomeActivity.this, CartActivity.class);
-                startActivity(cartIntent);
-            }
-        });
         DrawerLayout drawer = binding.drawerLayout;
         drawerLayout = drawer;
         NavigationView navigationView = binding.navView;
