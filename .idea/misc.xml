@@ -26,6 +26,7 @@
         <entry key="app/src/main/res/layout/nav_header_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/rv_list_cart_items.xml" value="0.33" />
         <entry key="app/src/main/res/layout/rv_list_clothing_items.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/rv_list_order_items.xml" value="0.1" />
         <entry key="app/src/main/res/menu/activity_home_drawer.xml" value="0.1" />
         <entry key="app/src/main/res/menu/home.xml" value="0.1" />
       </map>
