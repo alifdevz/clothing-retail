@@ -25,6 +25,7 @@ import com.alif.clothingretail.SignInActivity;
 import com.alif.clothingretail.adapter.CartAdapter;
 import com.alif.clothingretail.common.Common;
 import com.alif.clothingretail.database.Database;
+import com.alif.clothingretail.interfaces.DeleteButtonClickListener;
 import com.alif.clothingretail.model.Order;
 import com.alif.clothingretail.model.Request;
 import com.alif.clothingretail.ui.items.ItemsFragment;
@@ -182,6 +183,12 @@ public class CartFragment extends Fragment {
     private void loadOrderList() {
         cart = new Database(getActivity()).getCarts();
         adapter = new CartAdapter(cart, getActivity());
+        adapter.setDeleteButtonClickListener(new DeleteButtonClickListener() {
+            @Override
+            public void onDeleteButtonClicked(int totalPrice) {
+                tvTotalPrice.setText(String.valueOf(totalPrice));
+            }
+        });
         rvCartItems.setAdapter(adapter);
 
         // Calculate price total

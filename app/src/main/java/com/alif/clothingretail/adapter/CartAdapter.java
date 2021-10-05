@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alif.clothingretail.R;
 import com.alif.clothingretail.database.Database;
+import com.alif.clothingretail.interfaces.DeleteButtonClickListener;
 import com.alif.clothingretail.interfaces.ItemClickListener;
 import com.alif.clothingretail.model.Order;
 
@@ -44,10 +45,15 @@ class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
 public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
     private List<Order> orderList = new ArrayList<>();
     private Context context;
+    private DeleteButtonClickListener deleteButtonClickListener;
 
     public CartAdapter(List<Order> orderList, Context context) {
         this.orderList = orderList;
         this.context = context;
+    }
+
+    public void setDeleteButtonClickListener(DeleteButtonClickListener deleteButtonClickListener) {
+        this.deleteButtonClickListener = deleteButtonClickListener;
     }
 
     @NonNull
@@ -67,11 +73,19 @@ public class CartAdapter extends RecyclerView.Adapter<CartViewHolder> {
         viewHolder.tvDeleteItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Delete cart item in database and orderList
                 new Database(context).deleteItem(orderList.get(viewHolder.getAbsoluteAdapterPosition()).getProductId());
                 orderList.remove(viewHolder.getAbsoluteAdapterPosition());
                 notifyItemRemoved(viewHolder.getAbsoluteAdapterPosition());
                 notifyItemRangeChanged(viewHolder.getAbsoluteAdapterPosition(), orderList.size());
                 viewHolder.itemView.setVisibility(View.GONE);
+
+                // Track total
+                int total = 0;
+                for (Order order: orderList) {
+                    total += (Integer.parseInt(order.getPrice())  * Integer.parseInt(order.getQuantity()));
+                }
+                deleteButtonClickListener.onDeleteButtonClicked(total);
             }
         });
     }
