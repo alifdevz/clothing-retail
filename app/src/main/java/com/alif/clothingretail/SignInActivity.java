@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.alif.clothingretail.common.Common;
 import com.alif.clothingretail.model.User;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,8 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 public class SignInActivity extends AppCompatActivity {
-    MaterialEditText editPhone, editPassword;
-    Button btnSignIn;
+    private MaterialEditText editPhone, editPassword;
+    private Button btnSignIn;
+    private FirebaseAnalytics firebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class SignInActivity extends AppCompatActivity {
         // Initialize Firebase
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference table_user = database.getReference("user");
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +60,13 @@ public class SignInActivity extends AppCompatActivity {
                                 Intent homeIntent = new Intent(SignInActivity.this, HomeActivity.class);
                                 Common.currentUser = user;
                                 startActivity(homeIntent);
+
+                                // Added to firebase analytics event
+                                Bundle bundle = new Bundle();
+                                bundle.putString("username", user.getName());
+                                bundle.putString("password", user.getPassword());
+                                bundle.putString("phone_number", user.getPhoneNumber());
+                                firebaseAnalytics.logEvent("login", bundle);
                             } else {
                                 // Wrong password
                                 Toast.makeText(SignInActivity.this, "Wrong phone number or password!", Toast.LENGTH_SHORT).show();
