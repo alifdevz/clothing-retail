@@ -30,6 +30,7 @@ import com.alif.clothingretail.model.Order;
 import com.alif.clothingretail.model.Request;
 import com.alif.clothingretail.ui.items.ItemsFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -63,6 +64,8 @@ public class CartFragment extends Fragment {
 
     private List<Order> cart = new ArrayList<>();
     private CartAdapter adapter;
+
+    private FirebaseAnalytics firebaseAnalytics;
 
     public CartFragment() {
         // Required empty public constructor
@@ -101,6 +104,7 @@ public class CartFragment extends Fragment {
         // Initialize Firebase
         database = FirebaseDatabase.getInstance();
         requests = database.getReference("requests");
+        firebaseAnalytics = FirebaseAnalytics.getInstance(getActivity());
 
         // Initialize views
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
@@ -159,6 +163,15 @@ public class CartFragment extends Fragment {
                 // Use System.CurrentTimeMillis as key
                 requests.child(String.valueOf(System.currentTimeMillis()))
                         .setValue(request);
+
+                // Added to firebase analytics event
+                Bundle bundle = new Bundle();
+                bundle.putString("phone_number", Common.currentUser.getPhoneNumber());
+                bundle.putString("username", Common.currentUser.getName());
+                bundle.putString("address", edtAddress.getText().toString());
+                bundle.putString("total_price", tvTotalPrice.getText().toString());
+                firebaseAnalytics.logEvent("purchase", bundle);
+
                 // Delete cart
                 new Database(getActivity()).cleanCart();
                 Toast.makeText(getActivity(), "Thank you for ordering!", Toast.LENGTH_SHORT).show();
