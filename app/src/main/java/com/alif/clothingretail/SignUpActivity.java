@@ -62,7 +62,13 @@ public class SignUpActivity extends AppCompatActivity {
                             User user = new User(editName.getText().toString(), editPassword.getText().toString(), editPhoneNumber.getText().toString());
                             table_user.child(editPhoneNumber.getText().toString()).setValue(user);
                             Toast.makeText(SignUpActivity.this, "Sign up successfully!", Toast.LENGTH_SHORT).show();
-                            firebaseAnalytics.logEvent("sign_up", null);
+
+                            // Added to firebase analytics event
+                            Bundle bundle = new Bundle();
+                            bundle.putString("username", user.getName());
+                            bundle.putString("password", user.getPassword());
+                            bundle.putString("phone_number", user.getPhoneNumber());
+                            firebaseAnalytics.logEvent("sign_up", bundle);
                             dataExists = true;
                             finish();
                         }
