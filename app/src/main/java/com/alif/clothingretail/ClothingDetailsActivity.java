@@ -16,6 +16,7 @@ import com.alif.clothingretail.model.Order;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +41,8 @@ public class ClothingDetailsActivity extends AppCompatActivity {
     private String clothingId = "";
     private Clothing currentClothing;
 
+    private FirebaseAnalytics firebaseAnalytics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +55,7 @@ public class ClothingDetailsActivity extends AppCompatActivity {
         options = new FirebaseRecyclerOptions.Builder<Clothing>()
                 .setQuery(query, Clothing.class)
                 .build();
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         // Initialize views
         btnCart = findViewById(R.id.btn_cart);
@@ -88,6 +92,13 @@ public class ClothingDetailsActivity extends AppCompatActivity {
     public void increaseNumber(View view) {
         numberInt++;
         number.setText(String.valueOf(numberInt));
+
+        // Added to firebase analytics event
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, clothingId);
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, currentClothing.getName());
+        bundle.putString(FirebaseAnalytics.Param.PRICE, currentClothing.getPrice());
+        firebaseAnalytics.logEvent("add_item_quantity", bundle);
     }
 
     public void storeToCart(View view) {
@@ -97,6 +108,15 @@ public class ClothingDetailsActivity extends AppCompatActivity {
                 number.getText().toString(),
                 currentClothing.getPrice()
         ));
+
+        // Added to firebase analytics event
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, clothingId);
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, currentClothing.getName());
+        bundle.putString(FirebaseAnalytics.Param.QUANTITY, number.getText().toString());
+        bundle.putString(FirebaseAnalytics.Param.PRICE, currentClothing.getPrice());
+        firebaseAnalytics.logEvent("add_to_cart", bundle);
+
         Toast.makeText(ClothingDetailsActivity.this, "Added to cart", Toast.LENGTH_SHORT).show();
     }
 
