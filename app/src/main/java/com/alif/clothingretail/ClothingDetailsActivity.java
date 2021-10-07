@@ -86,12 +86,14 @@ public class ClothingDetailsActivity extends AppCompatActivity {
         if (numberInt > 1) {
             numberInt--;
             number.setText(String.valueOf(numberInt));
+            updatePrice();
         }
     }
 
     public void increaseNumber(View view) {
         numberInt++;
         number.setText(String.valueOf(numberInt));
+        updatePrice();
 
         // Added to firebase analytics event
         Bundle bundle = new Bundle();
@@ -99,6 +101,12 @@ public class ClothingDetailsActivity extends AppCompatActivity {
         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, currentClothing.getName());
         bundle.putString(FirebaseAnalytics.Param.PRICE, currentClothing.getPrice());
         firebaseAnalytics.logEvent("add_item_quantity", bundle);
+    }
+
+    private void updatePrice() {
+        int price = Integer.parseInt(currentClothing.getPrice());
+        price = price * numberInt;
+        clothingPrice.setText(String.valueOf(price));
     }
 
     public void storeToCart(View view) {
